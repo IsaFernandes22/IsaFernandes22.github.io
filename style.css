@@ -1,162 +1,89 @@
-/* Sage Green Minimalist Portfolio Theme */
-
-:root {
-    --sage-green: #A3B18A;
-    --text-dark: #2F3E46;
-    --text-light: #ffffff;
-    --bg-light: #f8f9f7;
+/* Poppins + Sage Green Colorful Minimal */
+:root{
+  --sage: #A3B18A;
+  --text: #2F3E46;
+  --muted: #6B7280;
+  --bg: #fbfbf9;
+  --card: #ffffff;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-body {
-    background-color: var(--bg-light);
-    color: var(--text-dark);
-    text-align: center;
+/* NAV */
+.topnav{
+  position:fixed;top:0;left:0;right:0;background:#ffffffaa;backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(47,62,70,0.06);z-index:999;
 }
+.topnav .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.logo{font-weight:700;color:var(--text)}
+.nav-links{list-style:none;display:flex;gap:18px;margin:0;padding:0}
+.nav-links .nav-link{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+.nav-links .nav-link:hover{color:var(--text)}
+.nav-links .nav-link.active{background:var(--sage);color:white}
 
-/* Navigation */
-header {
-    background-color: var(--sage-green);
-    padding: 15px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+/* HERO */
+.hero{padding:120px 20px 80px;text-align:center}
+.hero-inner{max-width:760px;margin:0 auto}
+.profile-pic{width:160px;height:160px;border-radius:50%;background:#dfe6dc;margin:0 auto 18px;background-size:cover;background-position:center;box-shadow:0 6px 18px rgba(163,177,138,0.12)}
+.profile-pic { background-image: url('me.JPG');}
+.name{font-size:2.2rem;margin:6px 0}
+.tagline{color:var(--muted);margin:0}
+
+/* SECTIONS */
+.section{padding:60px 20px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-title{font-size:1.6rem;margin-bottom:18px}
+
+/* PROJECTS */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.filter-btn{background:transparent;border:2px solid rgba(47,62,70,0.06);padding:8px 12px;border-radius:999px;font-weight:600;cursor:pointer}
+.filter-btn.active{background:var(--sage);color:#fff;border-color:var(--sage)}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.project-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(47,62,70,0.06);transition:transform .18s,opacity .18s}
+.project-card.hidden{opacity:0;transform:translateY(8px);pointer-events:none}
+.project-desc{color:var(--muted);font-size:0.95rem}
+.project-links a{color:var(--sage);text-decoration:none;font-weight:700}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.skill-block{background:var(--card);padding:16px;border-radius:12px}
+.icons{display:flex;gap:12px;flex-wrap:wrap}
+.skill-icon{display:flex;flex-direction:column;align-items:center;gap:6px;width:88px;padding:8px;border-radius:10px;background:linear-gradient(180deg,rgba(163,177,138,0.06),transparent);font-weight:600}
+.skill-icon i{font-size:1.6rem}
+.cert-list{margin:8px 0 0;padding-left:18px}
+
+/* CONTACT */
+.contact-form{max-width:720px;margin-top:12px}
+.contact-form input, .contact-form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(47,62,70,0.08);margin-bottom:12px;font-size:1rem}
+.primary-btn{background:var(--sage);color:white;border:none;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer}
+.primary-btn:hover{opacity:0.95}
+.form-status{margin-top:12px;color:var(--muted)}
+
+/* FOOTER */
+.site-footer{padding:30px 20px;border-top:1px solid rgba(47,62,70,0.04);margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.social-icons a{margin-left:12px;color:var(--text);text-decoration:none;font-size:1.2rem}
+
+/* Accessibility helper */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Responsiveness */
+@media (max-width:900px){
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
+  .skills-grid{grid-template-columns:1fr}
 }
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--text-light);
-    font-weight: bold;
-    transition: opacity 0.2s;
-}
-
-nav a:hover {
-    opacity: 0.7;
-}
-
-/* Hero Section */
-.hero {
-    padding-top: 130px;
-    padding-bottom: 60px;
-}
-
-.profile-pic {
-    width: 160px;
-    height: 160px;
-    background-color: #d0d5cd;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    background-size: cover;
-    background-position: center;
-}
-
-h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-section {
-    padding: 90px 20px;
-    max-width: 900px;
-    margin: auto;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-/* Contact Form */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
-    margin: 20px auto;
-}
-
-.contact-form input,
-.contact-form textarea {
-    padding: 12px;
-    border: 2px solid var(--sage-green);
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.contact-form button {
-    background-color: var(--sage-green);
-    color: var(--text-light);
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    font-weight: bold;
-    transition: opacity 0.2s;
-}
-
-.contact-form button:hover {
-    opacity: 0.8;
-}
-
-.email-btn {
-    display: inline-block;
-    background-color: var(--sage-green);
-    color: var(--text-light);
-    padding: 10px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.email-btn:hover {
-    opacity: 0.8;
-}
-
-/* Social Icons */
-.social-icons {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.social-icons a {
-    font-size: 1.8rem;
-    color: var(--text-dark);
-    transition: opacity 0.2s;
-}
-
-.social-icons a:hover {
-    opacity: 0.6;
-}
-
-/* Mobile adjustments */
-@media (max-width: 600px) {
-    nav ul {
-        gap: 15px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    .profile-pic {
-        width: 130px;
-        height: 130px;
-    }
+@media (max-width:600px){
+  .nav-inner{padding:10px}
+  .profile-pic{width:120px;height:120px}
+  .projects-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
 }
