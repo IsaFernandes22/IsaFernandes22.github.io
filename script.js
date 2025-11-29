@@ -23,59 +23,63 @@ const observer = new IntersectionObserver((entries)=>{
 },options);
 sections.forEach(s=>observer.observe(s));
 
-// Project filtering
-const filterButtons = document.querySelectorAll('.filter-btn');
+// Fetch GitHub repos dynamically and handle filtering
+const filterContainer = document.getElementById('filter-buttons'); // container for filter buttons
 const projectsGrid = document.getElementById('projects-grid');
-const projects = projectsGrid ? Array.from(projectsGrid.querySelectorAll('.project-card')) : [];
-filterButtons.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    filterButtons.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    projects.forEach(p=>{
-      const lang = p.dataset.lang;
-      if(filter==='all' || filter===lang){
-        p.classList.remove('hidden');
-      } else {
-        p.classList.add('hidden');
-      }
-    });
-  });
-});
 
-// Fetch GitHub repos dynamically
 fetch('https://api.github.com/users/IsaFernandes22/repos')
   .then(res => res.json())
   .then(repos => {
-    const container = document.getElementById('projects-grid');
-    if(!container) return;
-    container.innerHTML = ''; // clear any static cards
+    if(!projectsGrid) return;
+    projectsGrid.innerHTML = '';
 
-    repos
-      .filter(r => !r.fork) // hide forks
-      .sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at))
-      .forEach(repo => {
-        const lang = repo.language || 'Other';
-        const card = document.createElement('div');
-        card.className = 'project-card';
-        card.dataset.lang = lang.toLowerCase();
+    // Filter out forks and website repo
+    const filteredRepos = repos.filter(r => !r.fork && r.name.toLowerCase() !== 'isafernandes22.github.io')
+      .sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at));
 
-        card.innerHTML = `
-          <h3>${repo.name}</h3>
-          <p>${repo.description || 'No description yet.'}</p>
-          <span class="lang-badge"><strong>${lang}</strong></span>
-          <a href="${repo.html_url}" target="_blank" class="project-link">View Repo</a>
-        `;
+    // Collect unique languages for dynamic filter buttons
+    const languages = Array.from(new Set(filteredRepos.map(r => (r.language || 'Other').toLowerCase()))).sort();
 
-        container.appendChild(card);
+    // Build filter buttons dynamically
+    if(filterContainer){
+      filterContainer.innerHTML = '<button class="filter-btn active" data-filter="all">All</button>' +
+        languages.map(l => `<button class="filter-btn" data-filter="${l}">${l.charAt(0).toUpperCase() + l.slice(1)}</button>`).join('');
+    }
+
+    // Build project cards
+    filteredRepos.forEach(repo => {
+      const lang = repo.language || 'Other';
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.dataset.lang = lang.toLowerCase();
+      card.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p>${repo.description || 'No description yet.'}</p>
+        <span class="lang-badge"><strong>${lang}</strong></span>
+        <a href="${repo.html_url}" target="_blank" class="project-link">View Repo</a>
+      `;
+      projectsGrid.appendChild(card);
+    });
+
+    // Attach filtering behavior to buttons
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = Array.from(projectsGrid.querySelectorAll('.project-card'));
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          const lang = card.dataset.lang;
+          card.classList.toggle('hidden', !(filter === 'all' || filter === lang));
+        });
       });
-  });
+    });
 
-// Reapply filtering behavior after projects load
-setTimeout(() => {
-  const activeBtn = document.querySelector('.filter-btn.active');
-  if(activeBtn) activeBtn.click();
-}, 1000);
+    // Apply initial filter
+    const activeBtn = document.querySelector('.filter-btn.active') || filterButtons[0];
+    if(activeBtn) activeBtn.click();
+  });
 
 // Formspree submission handling (progress feedback)
 const form = document.getElementById('contact-form');
@@ -99,7 +103,6 @@ if(form){
       .catch(()=>{
         status.textContent = 'Network error — please try again later.';
       });
-  });
 }
 
 // current year
