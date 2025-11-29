@@ -43,6 +43,40 @@ filterButtons.forEach(btn=>{
   });
 });
 
+// Fetch GitHub repos dynamically
+fetch('https://api.github.com/users/IsaFernandes22/repos')
+  .then(res => res.json())
+  .then(repos => {
+    const container = document.getElementById('projects-grid');
+    if(!container) return;
+    container.innerHTML = ''; // clear any static cards
+
+    repos
+      .filter(r => !r.fork) // hide forks
+      .sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at))
+      .forEach(repo => {
+        const lang = repo.language || 'Other';
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.dataset.lang = lang.toLowerCase();
+
+        card.innerHTML = `
+          <h3>${repo.name}</h3>
+          <p>${repo.description || 'No description yet.'}</p>
+          <span class="lang-badge"><strong>${lang}</strong></span>
+          <a href="${repo.html_url}" target="_blank" class="project-link">View Repo</a>
+        `;
+
+        container.appendChild(card);
+      });
+  });
+
+// Reapply filtering behavior after projects load
+setTimeout(() => {
+  const activeBtn = document.querySelector('.filter-btn.active');
+  if(activeBtn) activeBtn.click();
+}, 1000);
+
 // Formspree submission handling (progress feedback)
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
@@ -70,6 +104,3 @@ if(form){
 
 // current year
 document.getElementById('cur-year').textContent = new Date().getFullYear();
-
-// helper: let user change profile pic by setting background-image on #profile-pic
-// Example: document.getElementById('profile-pic').style.backgroundImage = "url('me.jpg')";
