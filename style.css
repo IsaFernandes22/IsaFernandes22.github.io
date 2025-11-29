@@ -34,7 +34,7 @@ body{
 .hero{padding:120px 20px 80px;text-align:center}
 .hero-inner{max-width:760px;margin:0 auto}
 .profile-pic{width:160px;height:160px;border-radius:50%;background:#dfe6dc;margin:0 auto 18px;background-size:cover;background-position:center;box-shadow:0 6px 18px rgba(163,177,138,0.12)}
-.profile-pic { background-image: url('me.JPG');}
+.profile-pic { background-image: url('me.jpg');}
 .name{font-size:2.2rem;margin:6px 0}
 .tagline{color:var(--muted);margin:0}
 
