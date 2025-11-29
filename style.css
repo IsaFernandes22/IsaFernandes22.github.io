@@ -1,0 +1,162 @@
+/* Sage Green Minimalist Portfolio Theme */
+
+:root {
+    --sage-green: #A3B18A;
+    --text-dark: #2F3E46;
+    --text-light: #ffffff;
+    --bg-light: #f8f9f7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    text-align: center;
+}
+
+/* Navigation */
+header {
+    background-color: var(--sage-green);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+
+/* Hero Section */
+.hero {
+    padding-top: 130px;
+    padding-bottom: 60px;
+}
+
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    background-color: #d0d5cd;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+section {
+    padding: 90px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px;
+    border: 2px solid var(--sage-green);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.contact-form button {
+    background-color: var(--sage-green);
+    color: var(--text-light);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+.contact-form button:hover {
+    opacity: 0.8;
+}
+
+.email-btn {
+    display: inline-block;
+    background-color: var(--sage-green);
+    color: var(--text-light);
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.email-btn:hover {
+    opacity: 0.8;
+}
+
+/* Social Icons */
+.social-icons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    transition: opacity 0.2s;
+}
+
+.social-icons a:hover {
+    opacity: 0.6;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    nav ul {
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .profile-pic {
+        width: 130px;
+        height: 130px;
+    }
+}
