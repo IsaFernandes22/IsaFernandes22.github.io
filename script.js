@@ -103,6 +103,7 @@ if(form){
       .catch(()=>{
         status.textContent = 'Network error — please try again later.';
       });
+  });
 }
 
 // current year
