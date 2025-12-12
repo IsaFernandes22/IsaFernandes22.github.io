@@ -30,7 +30,7 @@ body{
 .nav-links .nav-link:hover{color:var(--text)}
 .nav-links .nav-link.active{background:var(--sage);color:white}
 
-/* HERO */
+/* PROFILE */
 .hero{padding:120px 20px 80px;text-align:center}
 .hero-inner{max-width:760px;margin:0 auto}
 .profile-pic{width:160px;height:160px;border-radius:50%;background:#dfe6dc;margin:0 auto 18px;background-size:cover;background-position:center;box-shadow:0 6px 18px rgba(163,177,138,0.12)}
