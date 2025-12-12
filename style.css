@@ -38,6 +38,28 @@ body{
 .name{font-size:2.2rem;margin:6px 0}
 .tagline{color:var(--muted);margin:0}
 
+.social-icons{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  margin-top:20px;
+}
+.social-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:10px 18px;
+  background:var(--sage);
+  color:white;
+  text-decoration:none;
+  border-radius:999px;
+  font-weight:600;
+  transition:opacity 0.2s;
+}
+.social-link:hover{
+  opacity:0.9;
+}
+
 /* SECTIONS */
 .section{padding:60px 20px}
 .section-inner{max-width:1100px;margin:0 auto}
