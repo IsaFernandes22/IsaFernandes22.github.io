@@ -2,7 +2,6 @@
 
 A **personal portfolio website** showcasing my projects, skills, and ways to contact me. Built with modern web technologies, this site dynamically pulls projects from my GitHub repositories and allows users to filter them by programming language.
 
-![Screenshot](screenshot.png) <!-- optional, add your screenshot file if desired -->
 
 ## Features
 
